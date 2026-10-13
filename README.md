@@ -132,7 +132,3 @@
 ## 서드파티
 
 - [lamejs](https://github.com/zhuker/lamejs) (LGPL-3.0) — 자세한 내용은 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)
-
-## 라이선스
-
-(저장소 소유자가 선택해서 `LICENSE` 파일을 추가하세요. `lame.min.js`는 위와 같이 LGPL-3.0을 따릅니다.)

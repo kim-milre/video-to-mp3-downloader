@@ -1,0 +1,9 @@
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# 빌드·패키징 산출물
+*.zip
+node_modules/

@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8"><title>MP3 수집함</title>
+<link rel="icon" href="icons/icon32.png">
+<style>
+  :root{--bg:#fff;--fg:#1f2937;--mut:#6b7280;--line:#e5e7eb;--card:#f9fafb;--acc:#e11d48}
+  @media (prefers-color-scheme:dark){:root{--bg:#111827;--fg:#f3f4f6;--mut:#9ca3af;--line:#374151;--card:#1f2937}}
+  body{margin:0;background:var(--bg);color:var(--fg);font:14px/1.5 system-ui,sans-serif}
+  .wrap{max-width:900px;margin:0 auto;padding:20px 16px 80px}
+  h1{font-size:18px;margin:0 0 12px;display:flex;align-items:center}
+  .bar{display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 12px;margin-bottom:10px}
+  .bar label{display:flex;align-items:center;gap:6px}
+  select,.txt{padding:4px 6px;border-radius:6px;border:1px solid var(--line);background:var(--bg);color:var(--fg)}
+  button{background:var(--acc);color:#fff;border:0;border-radius:6px;padding:7px 14px;cursor:pointer;font-size:13px}
+  button.sec{background:transparent;color:var(--fg);border:1px solid var(--line)}
+  button.small{padding:3px 9px;font-size:12px}
+  button:disabled{opacity:.45;cursor:default}
+  #sum{color:var(--mut);margin:0 2px 10px}
+  .sec-title{display:flex;align-items:center;gap:10px;font-weight:600;margin:14px 2px 8px}
+  .sec-title .sp{flex:1}
+  .row{display:grid;grid-template-columns:28px 1fr 190px 28px;gap:10px;align-items:center;border:1px solid var(--line);border-radius:8px;padding:8px 10px;margin-bottom:6px}
+  .row.done{opacity:.85;background:var(--card)}
+  .lead{display:flex;justify-content:center}
+  .redo{display:none;background:transparent;color:var(--mut);border:1px solid var(--line);padding:1px 5px;font-size:13px}
+  .row.done .chk{display:none}.row.done .redo{display:inline}
+  .name{width:100%;box-sizing:border-box;padding:5px 7px;border:1px solid var(--line);border-radius:6px;background:var(--bg);color:var(--fg);font-size:13px}
+  .sub{font-size:11px;color:var(--mut);margin-top:2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  progress{width:100%;height:8px}
+  .st{font-size:11px;color:var(--mut);margin-top:2px}
+  .st.done{color:#059669}.st.err{color:#dc2626}
+  .rm{background:transparent;color:var(--mut);padding:2px 6px}
+  .empty{color:var(--mut);padding:22px 0;text-align:center}
+  .hint{font-size:11px;color:var(--mut)}
+  @media (prefers-color-scheme:dark){h1 img{background:#fff;border-radius:6px;padding:2px}}
+</style></head>
+<body><div class="wrap">
+  <h1><img src="icons/icon48.png" width="28" height="28" style="vertical-align:middle;margin-right:8px">MP3 수집함</h1>
+
+  <div class="bar">
+    <span>저장 위치:</span>
+    <b id="destName"></b>
+    <button id="pick" class="sec small">폴더 선택...</button>
+    <button id="resetDir" class="sec small" style="display:none">기본 폴더로</button>
+    <label id="subWrap">하위 폴더 <input id="subdir" class="txt" placeholder="예: 강의MP3/알고리즘" size="20"></label>
+    <span class="hint" style="flex-basis:100%">폴더를 직접 고르면 그 폴더에 바로 저장됩니다. 선택하지 않으면 크롬 기본 다운로드 폴더(하위 폴더 지정 가능)에 저장됩니다.</span>
+  </div>
+
+  <div class="bar">
+    <label>품질
+      <select id="preset">
+        <option value="voice">음성(빠름·작은 용량)</option>
+        <option value="std">표준(스테레오 128k)</option>
+      </select>
+    </label>
+    <label>동시 처리
+      <select id="conc"><option>1</option><option selected>2</option><option>3</option><option>4</option></select>
+    </label>
+    <label>다운로드 연결
+      <select id="lanes"><option>1</option><option>4</option><option selected>8</option><option>16</option></select>
+    </label>
+    <label><input type="checkbox" id="num"> 파일명에 번호 붙이기</label>
+    <span style="flex:1"></span>
+    <button id="start">선택 항목 변환 시작</button>
+    <button id="stop" class="sec" disabled>중지</button>
+    <button id="clear" class="sec">전체 비우기</button>
+  </div>
+  <div id="sum"></div>
+
+  <div class="sec-title">
+    <label style="display:inline-flex;gap:6px;font-weight:400"><input type="checkbox" id="all" checked> 전체 선택</label>
+    <span id="pendTitle">대기 / 진행 중</span>
+  </div>
+  <div id="list"></div>
+  <div class="empty" id="empty" style="display:none">대기 중인 항목이 없습니다.<br>영상 페이지에서 영상을 재생하면 여기에 자동으로 나타납니다.</div>
+
+  <div id="doneBox" style="display:none">
+    <div class="sec-title"><span id="doneTitle">✅ 완료</span><span class="sp"></span>
+      <button id="clearDone" class="sec small">완료 항목 비우기</button></div>
+    <div id="doneList"></div>
+  </div>
+  <script src="manager.js"></script>
+</div></body></html>

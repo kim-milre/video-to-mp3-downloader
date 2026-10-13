@@ -1,0 +1,36 @@
+{
+  "manifest_version": 3,
+  "name": "Video to MP3 Downloader",
+  "version": "3.9.0",
+  "description": "재생한 영상/오디오를 수집해 MP3로 일괄 변환·다운로드합니다.",
+  "permissions": [
+    "webRequest",
+    "storage",
+    "tabs",
+    "downloads",
+    "declarativeNetRequest",
+    "offscreen"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "MP3 수집함",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  }
+}

@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8">
+<style>
+  body{width:320px;margin:0;padding:14px;font:13px/1.5 system-ui,sans-serif;color:#1f2937}
+  h1{font-size:15px;margin:0 0 8px}
+  .cnt{margin-bottom:10px;color:#4b5563}
+  button{background:#e11d48;color:#fff;border:0;border-radius:6px;padding:8px 12px;cursor:pointer;width:100%;font-size:13px}
+  button:hover{background:#be123c}
+  input{width:100%;box-sizing:border-box;padding:7px;border:1px solid #d1d5db;border-radius:6px;margin-bottom:6px}
+  hr{border:0;border-top:1px solid #e5e7eb;margin:12px 0}
+  .tip{font-size:11px;color:#6b7280;margin-top:8px}
+  #msg{font-size:12px;color:#059669;margin-top:6px;min-height:16px}
+</style></head>
+<body>
+  <h1><img src="icons/icon32.png" width="22" height="22" style="vertical-align:middle;margin-right:6px">MP3 수집함</h1>
+  <div class="cnt" id="cnt">불러오는 중...</div>
+  <button id="open">수집함 열기 / 일괄 변환</button>
+  <hr>
+  <div>링크 직접 추가</div>
+  <input id="manual" placeholder="https://.../video.mp4">
+  <button id="add" style="background:#374151">수집함에 추가</button>
+  <div id="msg"></div>
+  <div class="tip">영상을 재생하면 자동으로 수집함에 쌓입니다. 강의마다 몇 초만 재생한 뒤 다음으로 넘어가도 됩니다.</div>
+  <script src="popup.js"></script>
+</body></html>
